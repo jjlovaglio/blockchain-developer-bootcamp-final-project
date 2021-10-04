@@ -8,7 +8,7 @@
 * Plants have different statuses and are subject to different water treatments.
 * Users need to be able to acquire a plant 
 
-<code>
+```
  pragma solidity ^X.X.XX;
  
  contract PlantAquisition {
@@ -18,4 +18,4 @@ function acquire(uint plantId) public returns(uint) {
  }
 
 }
-</code>
+```
