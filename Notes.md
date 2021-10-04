@@ -9,8 +9,13 @@
 * Users need to be able to acquire a plant 
 
 <code>
-function acquire(uint plantId) public returns(uint) {
+ pragma solidity ^X.X.XX;
  
+ contract PlantAquisition {
+ 
+function acquire(uint plantId) public returns(uint) {
+  
  }
 
+}
 </code>
