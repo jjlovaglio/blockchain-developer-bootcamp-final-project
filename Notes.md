@@ -9,13 +9,28 @@
 * Users need to be able to acquire a plant 
 
 ```
- pragma solidity ^X.X.XX;
+pragma solidity ^X.X.XX;
  
- contract PlantAquisition {
+contract PlantAquisition {
  
-function acquire(uint plantId) public returns(uint) {
+    address[n] public acquirers;
   
- }
+    function acquire(uint plantId) 
+        public 
+        returns(uint) 
+      {
+        require(plantId >= 0 && petId <= n);
+        acquirers[plantId] = msg.sender;
+        return plantId;
+      }
+      
+    function getAquirors()
+        public 
+        view
+        returns(address[n])
+      {
+        return acquirers;
+      }
 
 }
 ```
