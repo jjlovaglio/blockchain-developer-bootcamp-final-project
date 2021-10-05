@@ -15,17 +15,19 @@ pragma solidity ^X.X.XX;
  
 contract PlantAquisition {
  
+    MAX_PLANTS = n;
     address[n] public acquirers;
   
     function acquire(uint plantId) 
         public 
         returns(uint) 
       {
-        require(plantId >= 0 && plantId <= n);
+        require(plantId < address.length);
         acquirers[plantId] = msg.sender;
         return plantId;
       }
       
+     
     function getAquirors()
         public 
         view
