@@ -2,7 +2,7 @@
 
 ### Final Project submission for Consensys Blockchain Developer Bootcamp. Sept 2021
 
-#### Vines NFT's
+#### TokenVines , a vineyard/wine tokenization platform
 
 * This are   nft's in that will encode a precise geolocation where a real grapevine is growing.
 
