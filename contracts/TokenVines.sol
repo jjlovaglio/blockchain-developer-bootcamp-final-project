@@ -22,6 +22,4 @@ contract TokenVines {
 
 }
 
-// TODO: write the Solidity architecture (function names and their inputs and outputs )
-// TODO: merge with dev branch
-// TODO: upload to github
+
