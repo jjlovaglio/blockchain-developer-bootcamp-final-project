@@ -17,7 +17,7 @@
 
 
 ##### Project Structure
-
+```
 .
 ├── build/                   # Truffle build (alternatively `build`)
 ├── contracts/               # Truffle contracts (alternatively `contracts`)
@@ -26,3 +26,5 @@
 ├── brainstorming/           # contains braintorming files
 ├── truffle-config.js       # Truffle config
 └── README.md
+
+```
