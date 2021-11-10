@@ -1,8 +1,9 @@
+
 # blockchain-developer-bootcamp-final-project
 
 ### Final Project submission for Consensys Blockchain Developer Bootcamp. Sept 2021
 
-#### TokenVines , a vineyard/wine tokenization platform
+#### Vines NFT's
 
 * This are   nft's in that will encode a precise geolocation where a real grapevine is growing.
 
@@ -13,3 +14,15 @@
 * The owner of the NFT can have rights to the produce of that vine every year.
 
 * The project consists of a Dapp showing a metaverse version of a given vineyard, showing the status of the asset for current owners. 
+
+
+##### Project Structure
+
+.
+├── build/                   # Truffle build (alternatively `build`)
+├── contracts/               # Truffle contracts (alternatively `contracts`)
+├── migrations/              # Truffle migrations (alternatively `migrations`)
+├── test/                    # Automated tests (alternatively `tests`)
+├── brainstorming/           # contains braintorming files
+├── truffle-config.js       # Truffle config
+└── README.md
