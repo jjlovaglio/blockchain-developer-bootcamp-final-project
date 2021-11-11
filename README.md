@@ -29,6 +29,12 @@
 
 ```
 
-##### End of course NFT
+##### End of course NFT address
 
 ETH receiving address: `0x16A10a43B3f98CACD7Be6A72aa830561155385B0`
+
+##### Front end for the project (mvp & testing purposes)
+
+https://springboot-heku-demo.herokuapp.com/
+
+
