@@ -1,9 +1,9 @@
 
 # blockchain-developer-bootcamp-final-project
 
-### Final Project submission for Consensys Blockchain Developer Bootcamp. Sept 2021
+## Final Project submission for Consensys Blockchain Developer Bootcamp. Sept 2021
 
-#### Vines NFT's
+### Vines NFT's
 
 * This are   nft's in that will encode a precise geolocation where a real grapevine is growing.
 
@@ -16,7 +16,7 @@
 * The project consists of a Dapp showing a metaverse version of a given vineyard, showing the status of the asset for current owners. 
 
 
-##### Project Structure
+#### Project Structure
 ```
 .
 ├── build/                   # Truffle build (alternatively `build`)
@@ -29,11 +29,11 @@
 
 ```
 
-##### End of course NFT address
+#### End of course NFT address
 
 ETH receiving address: `0x16A10a43B3f98CACD7Be6A72aa830561155385B0`
 
-##### Front end for the project (mvp & testing purposes)
+#### Front end for the project (mvp & testing purposes)
 
 https://springboot-heku-demo.herokuapp.com/
 
