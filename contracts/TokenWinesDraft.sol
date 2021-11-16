@@ -2,54 +2,71 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 contract TokenVines {
+    //    uint256 public storedData;
 
-  uint256 public storedData;
-  address owner = msg.sender;
+    address owner = msg.sender;
 
-  constructor() public {}
+    enum Status {
+        Harvested,
+        Unharvested,
+        FrostStruck,
+        HailStruck
+    }
 
-  function registerVineyard() public {
-      // farmer registers vineyard
-      // farmer provides geolocation of vineyard
-      // farmer declares number of plants in the vineyard
-      // farmer provides his personal information
+    struct Vine {
+        address vineOwner;
+        uint256 price;
+    }
 
-  }
+    struct Vineyard {
+        address vineyardOwner;
+        string location;
+        Status status;
+        uint256 numberOfVines;
+        mapping(uint256 => Vine) vines;
+    }
 
-  function reportVineyardStatus() public {
-      // farmer reports status:
-            // when harvested
-            // when grapes fermenting
-            // when wine aging
-            // when wine bottled
-            // when wine labeled, packed & ready for pickup
-  }
+    constructor() public {
+        //
+    }
 
-  function submitHarvestReport() public {
-      // farmer submits report on how things went throughout the year until harvest
-  }
+    function registerVineyard() public {
+        // farmer registers vineyard
+        // farmer provides geolocation of vineyard
+        // farmer declares number of plants in the vineyard
+        // farmer provides his personal information
+    }
 
-  function submitWinemakingReport() public {
-      // farmer submits report on how things went during the winemaking phase of the process
-  }
+    function reportVineyardStatus() public {
+        // farmer reports status:
+        // when harvested
+        // when grapes fermenting
+        // when wine aging
+        // when wine bottled
+        // when wine labeled, packed & ready for pickup
+    }
 
-  function buyVines() public {
-      // buyer buys a vine
-  }
+    function submitHarvestReport() public {
+        // farmer submits report on how things went throughout the year until harvest
+    }
 
-  function viewAvailableVines() public {
-      // buyer views vines available for sale
-  }
+    function submitWinemakingReport() public {
+        // farmer submits report on how things went during the winemaking phase of the process
+    }
 
-  function claimWine() public {
-      // token holder claims wine of current harvest
-  }
+    function buyVines() public {
+        // buyer buys a vine
+    }
 
-  function putWineForSale() public {
-      // token holder leaves wine for current harvest to farmer to be sold for a profit
-  }
+    function viewAvailableVines() public {
+        // buyer views vines available for sale
+    }
 
+    function claimWine() public {
+        // token holder claims wine of current harvest
+    }
 
+    function putWineForSale() public {
+        // token holder leaves wine for current harvest to farmer to be sold for a profit
+    }
 }
-
-
