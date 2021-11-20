@@ -8,3 +8,5 @@ The main contract uses the Ownable module from OpenZeppelin. In this pattern, a 
 ## Inheritance and Interfaces
 
 describe library inherited or interface used
+
+Reentrancy Guard & Ownable
