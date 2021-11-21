@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.5.16;
+pragma solidity >=0.5.4;
+
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 // Define a contract 'Lemonade Stand'
-contract TokenVines {
-    // Variable: Owner
-    address owner;
-
+contract TokenVines is Ownable {
     // Variable: SKU count
     uint256 public vineCount;
 
@@ -27,12 +26,21 @@ contract TokenVines {
     // Define a public mapping 'items' that maps the SKU (a number) to an Item.
     mapping(uint256 => Vine) vines;
 
-    constructor(uint256 _count) public {
-        owner = msg.sender;
+    constructor(uint256 _count, uint256 _price) public {
         vineCount = _count;
+        address payable seller = msg.sender;
+        for (uint256 i = 0; i < _count; i++) {
+            vines[vineCount] = Vine({
+                vineId: i,
+                price: _price,
+                state: State.Harvested,
+                seller: seller,
+                buyer: address(0)
+            });
+        }
     }
 
-    function addVine(uint256 _price) public {
+    function addVine(uint256 _price) public onlyOwner {
         // Increment sku
         vineCount = vineCount + 1;
 

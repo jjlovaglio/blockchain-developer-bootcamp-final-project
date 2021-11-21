@@ -1,3 +1,4 @@
 {
-    "todo-tree.tree.showBadges": true
+    "todo-tree.tree.showBadges": true,
+    "solidity.compileUsingRemoteVersion": "v0.6.5+commit.f956cc89"
 }

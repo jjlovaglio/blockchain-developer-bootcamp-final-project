@@ -1,0 +1,17 @@
+// contract reference
+let instance = await <contract name>.deployed()
+
+// returns a promise
+let response = await instance.<function name>();
+
+nota: is pones await, devuelve el big number. 
+      si no pones await, de devuelve la promesa
+
+// unpacks a promise
+response.then((r) => console.log(r))
+
+// accounts reference
+
+
+// deploy command to rinkeby testnet
+truffle migrate --reset --network rinkeby
