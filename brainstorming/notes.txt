@@ -7,11 +7,18 @@ let response = await instance.<function name>();
 nota: is pones await, devuelve el big number. 
       si no pones await, de devuelve la promesa
 
+// unpacks a uint256
+response.toString();
+
 // unpacks a promise
 response.then((r) => console.log(r))
 
 // accounts reference
-
+truffle(develop)> let accounts = await web3.eth.getAccounts()
+truffle(develop)> instance.sendCoin(accounts[1], 10, {from: accounts[0]})
 
 // deploy command to rinkeby testnet
 truffle migrate --reset --network rinkeby
+
+// interact with rinkeby testnet via truffle console
+truffle console --network rinkeby

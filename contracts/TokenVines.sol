@@ -26,11 +26,13 @@ contract TokenVines is Ownable {
     // Define a public mapping 'items' that maps the SKU (a number) to an Item.
     mapping(uint256 => Vine) vines;
 
-    constructor(uint256 _count, uint256 _price) public {
+    constructor() public {}
+
+    function createVineyard(uint256 _count, uint256 _price) public onlyOwner {
         vineCount = _count;
-        address payable seller = msg.sender;
         for (uint256 i = 0; i < _count; i++) {
-            vines[vineCount] = Vine({
+            address payable seller = payable(msg.sender);
+            vines[i] = Vine({
                 vineId: i,
                 price: _price,
                 state: State.Harvested,
@@ -43,13 +45,14 @@ contract TokenVines is Ownable {
     function addVine(uint256 _price) public onlyOwner {
         // Increment sku
         vineCount = vineCount + 1;
+        // convert to address payable?
 
         // Add the new item into inventory and mark it for sale
         vines[vineCount] = Vine({
             vineId: vineCount,
             price: _price,
             state: State.Harvested,
-            seller: msg.sender,
+            seller: payable(msg.sender),
             buyer: address(0)
         });
     }

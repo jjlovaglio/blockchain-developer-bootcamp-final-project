@@ -1,6 +1,6 @@
 const TokenVines=artifacts.require("TokenVines");
 
-module.exports = function(deployer, network, accounts) {
-    deployer.deploy(TokenVines,10,100, {from: accounts[0]});
+module.exports = async function(deployer, network, accounts) {
+    await deployer.deploy(TokenVines,{from: accounts[0]});
   }
 
