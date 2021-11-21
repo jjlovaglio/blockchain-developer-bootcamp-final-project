@@ -1,0 +1,9 @@
+
+
+TODO: build tests for existing mvp
+TODO: implement ownable design pattern from OZ
+TODO: implement reentrancy guard from OZ
+TODO: edit design_pattern_decisions.md
+TODO: edit avoiding_common_attacks.md
+
+TODO: screencast

@@ -1,6 +1,6 @@
-//"SPDX-License-Identifier: UNLICENSED"
+// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.5.16;
+pragma solidity >=0.5.16;
 
 // Define a contract 'Lemonade Stand'
 contract TokenVines {
@@ -46,7 +46,7 @@ contract TokenVines {
         });
     }
 
-    function buyVine(uint256 _vineId) public payable {
+    function buyVine(uint256 _vineId) public {
         address buyer = msg.sender;
         uint256 price = vines[_vineId].price;
 
