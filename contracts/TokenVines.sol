@@ -28,6 +28,10 @@ contract TokenVines is Ownable {
 
     constructor() public {}
 
+    // TODO: create putVineForSale() function
+    // TODO: test all functionality in truffle develop
+    // TODO: research how to handle events in front end
+
     function createVineyard(uint256 _count, uint256 _price) public onlyOwner {
         vineCount = _count;
         for (uint256 i = 0; i < _count; i++) {
