@@ -25,3 +25,22 @@ truffle migrate --reset --network rinkeby
 
 // interact with rinkeby testnet via truffle console
 truffle console --network rinkeby
+
+
+Debugging
+################
+
+en una terminal aparte: 
+$ truffle develop --log
+
+en otra terminal
+truffle test
+
+ver el id del contrato en ventana 1 
+en ventana 2:
+$ truffle debug <contract id>
+
+add breakpoints and watches
+
+
+

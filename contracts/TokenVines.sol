@@ -44,18 +44,18 @@ contract TokenVines is Ownable {
 
         Vine storage v = vines[vineId];
         v.sale = Sale.ForSale;
+        v.seller = msg.sender;
     }
 
     function createVineyard(uint256 _count, uint256 _price) public onlyOwner {
         vineCount = _count;
         for (uint256 i = 0; i < _count; i++) {
-            address payable seller = payable(msg.sender);
             vines[i] = Vine({
                 vineId: i,
                 price: _price,
                 sale: Sale.ForSale,
                 state: State.Harvested,
-                seller: seller,
+                seller: payable(owner()),
                 buyer: payable(address(0))
             });
         }
@@ -65,19 +65,20 @@ contract TokenVines is Ownable {
         // Increment sku
         vineCount = vineCount + 1;
         // convert to address payable?
-
+        address payable seller = payable(msg.sender);
         // Add the new item into inventory and mark it for sale
         vines[vineCount] = Vine({
             vineId: vineCount,
             price: _price,
             sale: Sale.ForSale,
             state: State.Harvested,
-            seller: payable(msg.sender),
+            seller: seller,
             buyer: payable(address(0))
         });
     }
 
-    function buyVine(uint256 _vineId) public {
+    function buyVine(uint256 _vineId) public payable {
+        // TODO: debug this function, it is not working
         address buyer = msg.sender;
         uint256 price = vines[_vineId].price;
 
@@ -93,6 +94,7 @@ contract TokenVines is Ownable {
         vines[_vineId].sale = Sale.NotForSale;
 
         // Transfer money to seller
+        // this function doesn't work
         vines[_vineId].seller.transfer(price);
     }
 
