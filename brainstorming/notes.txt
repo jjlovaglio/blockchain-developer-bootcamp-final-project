@@ -1,3 +1,6 @@
+// truffle development environment
+truffle develop
+
 // contract reference
 let instance = await <contract name>.deployed()
 
@@ -14,7 +17,7 @@ response.toString();
 response.then((r) => console.log(r))
 
 // accounts reference
-truffle(develop)> let accounts = await web3.eth.getAccounts()
+let accounts = await web3.eth.getAccounts()
 truffle(develop)> instance.sendCoin(accounts[1], 10, {from: accounts[0]})
 
 // deploy command to rinkeby testnet
