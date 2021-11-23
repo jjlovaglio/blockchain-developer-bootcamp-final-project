@@ -57,3 +57,9 @@ $ heroku logs --tail
 
 // deployed consensys final project
 https://cfp-token-vines-jjl.herokuapp.com/
+
+Openzeppellin contract versions compatible with the project:
+##############
++ @openzeppelin/contracts@3.2.0
+
+$ npm install @openzeppelin/contracts@3.2.0

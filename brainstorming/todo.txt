@@ -3,9 +3,32 @@ DONE: implement ownable design pattern from OZ
 DONE: edit design_pattern_decisions.md
 DONE: edit avoiding_common_attacks.md
 
-TODO: build 5 tests for existing mvp
+DONE: build 5 tests for existing mvp
 
-TODO: incorporate heroku express front to project
-TODO: test heroku deployment after incorporation
+DONE: incorporate heroku express front to project
+DONE: test heroku deployment after incorporation
 
-TODO: screencast
+TODO: iterate front end:
+        allow user to submit a transaction to update smart contract
+        try to get feedback to front end after tx to the blockchain
+        updates the frontend if tx is successful or not
+
+TODO: add commented specs
+
+TODO: deploy final contract to rinkeby
+
+TODO: edit deployed_address.txt 
+
+
+
+TODO: create screencast with facetime on osx
+
+TODO: review requirements
+
+TODO: edit README
+        create instructions for installing dependencies
+        create instructions for accessing a server
+        create instructions for running unit tests
+
+TODO: submit project
+
