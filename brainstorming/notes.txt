@@ -47,4 +47,11 @@ add breakpoints and watches
 Express + Heroku Project
 ################
 
-$ npm init -y
+// to run express locally
+$ node app.js
+
+// to deploy from development branch
+$ git push heroku express-heroku-integration:main
+
+$ heroku logs --tail
+
