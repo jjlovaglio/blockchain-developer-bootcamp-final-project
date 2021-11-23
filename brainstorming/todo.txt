@@ -1,9 +1,11 @@
 
+DONE: implement ownable design pattern from OZ
+DONE: edit design_pattern_decisions.md
+DONE: edit avoiding_common_attacks.md
 
-TODO: build tests for existing mvp
-TODO: implement ownable design pattern from OZ
-TODO: implement reentrancy guard from OZ
-TODO: edit design_pattern_decisions.md
-TODO: edit avoiding_common_attacks.md
+TODO: build 5 tests for existing mvp
+
+TODO: incorporate heroku express front to project
+TODO: test heroku deployment after incorporation
 
 TODO: screencast

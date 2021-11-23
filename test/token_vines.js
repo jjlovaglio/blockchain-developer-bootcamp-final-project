@@ -1,40 +1,75 @@
 const TokenVines = artifacts.require("TokenVines");
 
-
 contract("TokenVines", function (accounts) {
-  it("should confirm contract is deployed", async function () {
-    await TokenVines.deployed();
-    return assert.isTrue(true);
+
+  const [farmerJane, buyerJoe] = accounts;
+
+  beforeEach( async () => {
+    instance = await TokenVines.new({from: farmerJane});
+
   });
 
-  it("can create a vineyard with 10 vines, each @ 100 price", async() => {
+  it("should add farmerJane (first account) as owner using OpenZeppelin Ownable", async function () {
 
-    const i = await TokenVines.deployed();
-     let v = await i.createVineyard(10,100);
-     let r = await i.fetchVine(1)
+    assert.equal(await instance.owner({from: farmerJane}), farmerJane);
+  });
+
+  it("farmerJane (Owner) can create a vineyard with 10 vines, each @ 100 price", async() => {
+
+     let v = await instance.createVineyard(10,100, {from: farmerJane});
+     let r = await instance.fetchVine(1, {from: farmerJane});
+     let c = await instance.vineCount({from: farmerJane});
 
     assert.equal(r.vineId.toNumber(), 1, "vineId should be one");
     assert.equal(r.price.toNumber(),100, "price should be 100" );
+    assert.equal(c.toNumber(), 10, "vineCount should be 10");
   });
 
-  describe("Function Tests", () => {
-    it("buyer address can buy a vine ", async () => {
-      const [farmerJane, buyerJoe] = accounts;
+  it("farmerJane (Owner) can add a Vine to the vineyard", async () => {
+    await instance.addVine(200, {from: farmerJane});
+    let c = await instance.vineCount({from: farmerJane});
+    assert.equal(c.toNumber(), 1, "vineCount should be 1");
 
-      const i = await TokenVines.deployed();
+  });
+
+    it("buyerJoe can buy a vine ", async () => {
+
       // owner (accounts[0]) adds a vine of price 20
-      let v = await i.createVineyard(10,200, {from: farmerJane})
+      let v = await instance.createVineyard(10,200, {from: farmerJane})
       // buyer (accounts[1]) buys a vine
-      await i.buyVine(1, {from: buyerJoe, value: 300 });
+      await instance.buyVine(1, {from: buyerJoe, value: 300 });
       // fetch bought vine
-      let r = await i.fetchVine(1);
+      let r = await instance.fetchVine(1);
 
       assert.equal(r.buyer, buyerJoe, "buyer should be accounts[1]")
       assert.equal(r.seller, farmerJane, "seller shoud be accounts[0]")
 
     })
+    it("buyerJoe cannot add a vine ", async () => {
 
-  })
+      try {
+        let r = await instance.addVine(200, {from: buyerJoe})
+        
+      } catch (err) { }
+
+      const r = await instance.vineCount.call();
+
+      assert.equal(r.toNumber(), 0, "vineCount was not changed!");
+
+    })
+    it("buyerJoe cannot add a vineyard ", async () => {
+
+      try {
+        let r = await instance.addVineyard(10,200, {from: buyerJoe})
+        
+      } catch (err) { }
+
+      const r = await instance.vineCount.call();
+
+      assert.equal(r.toNumber(), 0, "vineCount was not changed!");
+
+    })
+
 
   // it("should not let someone else change the owner variable", async () => {
   //   // will destructure accounts and give them variable names
