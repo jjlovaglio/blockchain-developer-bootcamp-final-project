@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.5.4;
+pragma solidity 0.6.5;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -39,6 +39,7 @@ contract TokenVines is Ownable {
     // TODO: research how to handle events in front end
 
     function putVineForSale(uint256 vineId) public {
+        // TODO: require msg.sender == ownerofthevine
         // fetch vine
         // change state
 
@@ -78,7 +79,6 @@ contract TokenVines is Ownable {
     }
 
     function buyVine(uint256 _vineId) public payable {
-        // TODO: debug this function, it is not working
         address buyer = msg.sender;
         uint256 price = vines[_vineId].price;
 
