@@ -78,40 +78,57 @@ tvGetButton.addEventListener("click", async () => {
               .then( function (vineObj) {
                 
                 console.log(vineObj)
-
-                // display vineObject elements
-                // create HTML for the objects
-                let  vineRow = document.getElementById('vineRow');
-                let vineCol = document.createElement('div')
-                vineCol.className = "col"
-                let vineCard = document.createElement('div')
-                vineCard.className = "card"
-                vineCard.style = ""
                 
-                let vineImg = document.createElement('img')
-                vineImg.src = "grapes.png"
-                let cardBody = document.createElement('div')
-                cardBody.className = "card-body"
-                let cardText = document.createElement('p')
-                cardText.className = "card-text"
-                cardText.innerHTML = 
-                    "Owner: ..." + vineObj.seller.slice(-5,) + "<br>" + 
-                    "Status: " + vineObj.stateIs + "<br>" +
-                    "Price: $" + vineObj.price + "<br>" +
-                    "VineId: " + vineObj.vineId
+                buildCard(vineObj)
+
+     
+
+              })
+
                 
 
-                vineRow.appendChild(vineCol)
-                vineCol.appendChild(vineCard)
-                vineCard.appendChild(vineImg)
-                vineCard.appendChild(cardBody)
-                cardBody.appendChild(cardText)
-            
-              });
               
 
     });
 
-
-
 });
+
+
+
+
+
+function buildCard (vineObj) {
+
+  let  vineRow = document.getElementById('vineRow');
+  let vineCol = document.createElement('div')
+  vineCol.className = "col"
+  let vineCard = document.createElement('div')
+  vineCard.className = "card"
+  vineCard.style = ""
+  
+  let vineImg = document.createElement('img')
+  vineImg.src = "grapes.png"
+  let cardBody = document.createElement('div')
+  cardBody.className = "card-body"
+  let cardText = document.createElement('p')
+  cardText.className = "card-text"
+  cardText.innerHTML = 
+      "Owner: ..." + vineObj.seller.slice(-5,) + "<br>" + 
+      "Status: " + vineObj.stateIs + "<br>" +
+      "Price: $" + vineObj.price + "<br>" +
+      "VineId: " + vineObj.vineId
+  let cardBtn = document.createElement('button')
+  cardBtn.className = "btn btn-outline-success buyBtn"
+  cardBtn.innerHTML = "buy"
+  cardBtn.id = vineObj.vineId
+
+  vineRow.appendChild(vineCol)
+  vineCol.appendChild(vineCard)
+  vineCard.appendChild(vineImg)
+  vineCard.appendChild(cardBody)
+  cardBody.appendChild(cardText)
+  cardBody.appendChild(cardBtn)
+
+
+}
+

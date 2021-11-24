@@ -51,7 +51,7 @@ Express + Heroku Project
 $ node app.js
 
 // to deploy from development branch
-$ git push heroku express-heroku-integration:main
+$ git push heroku dev:main
 
 $ heroku logs --tail
 
