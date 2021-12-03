@@ -6,8 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 // Define a contract 'Lemonade Stand'
 contract TokenVines is Ownable {
-    uint256 public vineCount; // total vines listed
-
+    // vineIds array for UI rendering
     uint256[] public vineIds;
 
     // Event: 'State' with value 'ForSale'
@@ -33,11 +32,13 @@ contract TokenVines is Ownable {
     // Define a public mapping 'items' that maps the SKU (a number) to an Item.
     mapping(uint256 => Vine) vines;
 
-    constructor() public {}
+    constructor() public {
+        createVineyard();
+    }
 
-    // TODO: create putVineForSale() function
-    // TODO: test all functionality in truffle develop
-    // TODO: research how to handle events in front end
+    function getVineCount() public view returns (uint256) {
+        return vineIds.length;
+    }
 
     function getVineIds() public view returns (uint256[] memory) {
         return vineIds;
@@ -53,25 +54,20 @@ contract TokenVines is Ownable {
         v.seller = msg.sender;
     }
 
-    function createVineyard(uint256 _count, uint256 _price)
-        public
-        returns (uint256)
-    {
-        for (uint256 i = 1; i < _count + 1; i++) {
+    function createVineyard() private {
+        uint256 numOfVines = 10;
+        uint256 pricePerVines = 100;
+        for (uint256 i = 1; i < numOfVines + 1; i++) {
             vineIds.push(i);
             vines[i] = Vine({
                 vineId: i,
-                price: _price,
+                price: pricePerVines,
                 sale: Sale.ForSale,
                 state: State.Harvested,
                 seller: payable(owner()),
                 buyer: payable(address(0))
             });
-
-            vineCount = vineCount + 1;
         }
-
-        return vineCount;
     }
 
     function buyVine(uint256 _vineId) public payable {

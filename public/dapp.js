@@ -1,4 +1,4 @@
-const contract_address = '0x310F74F05dc461768C71b288ed32cDFbBFe50DC6';
+const contract_address = '0x6b4209B2b0E913E037d1C02C00E56e55235594B0';
 const contract_abi = [
   {
     "inputs": [],
@@ -59,8 +59,14 @@ const contract_abi = [
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "vineCount",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "vineIds",
     "outputs": [
       {
         "internalType": "uint256",
@@ -73,14 +79,8 @@ const contract_abi = [
     "constant": true
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "vineIds",
+    "inputs": [],
+    "name": "getVineCount",
     "outputs": [
       {
         "internalType": "uint256",
@@ -116,30 +116,6 @@ const contract_abi = [
     ],
     "name": "putVineForSale",
     "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_count",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_price",
-        "type": "uint256"
-      }
-    ],
-    "name": "createVineyard",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -204,71 +180,85 @@ const contract_abi = [
   }
 ];
 
-// async function buildCard (vineObj) {
+async function buildCard (vineObj) {
 
-//   let  vineRow = document.getElementById('vineRow');
-//   let vineCol = document.createElement('div')
-//   vineCol.className = "col"
-//   let vineCard = document.createElement('div')
-//   vineCard.className = "card"
-//   vineCard.style = ""
+  let  vineRow = document.getElementById('vineRow');
+  let vineCol = document.createElement('div')
+  vineCol.className = "col"
+  let vineCard = document.createElement('div')
+  vineCard.className = "card"
+  vineCard.style = ""
   
-//   let vineImg = document.createElement('img')
-//   vineImg.src = "grapes.png"
-//   let cardBody = document.createElement('div')
-//   cardBody.className = "card-body"
-//   let cardText = document.createElement('p')
-//   cardText.className = "card-text"
-//   cardText.innerHTML = 
-//       "Owner: ..." + vineObj.seller.slice(-5,) + "<br>" + 
-//       "Status: " + vineObj.stateIs + "<br>" +
-//       "Price: $" + vineObj.price + "<br>" +
-//       "VineId: " + vineObj.vineId
-//   let cardBtn = document.createElement('button')
-//   cardBtn.className = "btn btn-outline-success buyBtn"
-//   cardBtn.innerHTML = "buy"
-//   cardBtn.id = vineObj.vineId
+  let vineImg = document.createElement('img')
+  vineImg.src = "grapes.png"
+  let cardBody = document.createElement('div')
+  cardBody.className = "card-body"
+  let cardText = document.createElement('p')
+  cardText.className = "card-text"
+  cardText.innerHTML = 
+      "Owner: ..." + vineObj.seller.slice(-5,) + "<br>" + 
+      "Status: " + vineObj.stateIs + "<br>" +
+      "Price: $" + vineObj.price + "<br>" +
+      "VineId: " + vineObj.vineId
+  let cardBtn = document.createElement('button')
+  cardBtn.className = "btn btn-outline-success buyBtn"
+  cardBtn.innerHTML = "buy"
+  cardBtn.id = vineObj.vineId
 
-//   vineRow.appendChild(vineCol)
-//   vineCol.appendChild(vineCard)
-//   vineCard.appendChild(vineImg)
-//   vineCard.appendChild(cardBody)
-//   cardBody.appendChild(cardText)
-//   cardBody.appendChild(cardBtn)
-// }
+  vineRow.appendChild(vineCol)
+  vineCol.appendChild(vineCard)
+  vineCard.appendChild(vineImg)
+  vineCard.appendChild(cardBody)
+  cardBody.appendChild(cardText)
+  cardBody.appendChild(cardBtn)
+}
 
 async function getVineIds(contract) {
   console.log("getVineIds() called");
-  var data = [];
-  data = await contract.methods.getVineIds().call();
-  console.log(data);
-
+  const data = await contract.methods.getVineIds().call();
+  console.log("vineIds: "+ data);
+  return data;
 }
 
 async function getVineCount(contract) {
   console.log("getVineCount() called")
-  var vineCount = await contract.methods.vineCount().call();
+  var vineCount = await contract.methods.getVineCount().call();
   console.log("vineCount: ", vineCount);
   return vineCount;
 }
 
-async function createVineyard(contract, numberOfVines, pricePerVine) {
-  console.log("createVineyard() called");
-  await contract.methods.createVineyard(numberOfVines, pricePerVine).send({from: ethereum.selectedAddress});
-  
- 
-
-}
 
 async function displayAllVines(contract) {
   console.log("displayAllWines() called");
 
-  await createVineyard(contract, 10, 100);
+  let vineIds = await getVineIds(contract);
   await getVineCount(contract);
-  await getVineIds(contract);
 
+  var vineRowDiv = $("#vineRow");
+  vineRowDiv.empty();
 
-   
+  // for each ID
+  $.each(vineIds, function(i){
+    // call the fetchVine function
+    // retrieve each vine
+    // use the buildCard function to create a vineCard object
+    // render in the UI
+    var vineStruct = fetchVine(contract, vineIds[i]);
+    vineStruct.then((v) => {
+
+      buildCard(v)
+
+    })
+    // console.log(vineStruct.then(console.log));
+
+  })
+
+}
+
+async function fetchVine(contract, vineId) {
+  console.log("fetchVine() called. return a vine struct")
+  var vineStruct = await contract.methods.fetchVine(vineId).call();
+  return vineStruct;
 }
 
 async function startApp() {
@@ -279,7 +269,7 @@ async function startApp() {
   await ethereum.request({ method: 'eth_requestAccounts' });
   $("#mm-current-account").text("Connected to: " + ethereum.selectedAddress);
 
-  // create list of ids
+
   // iterate them and make cards in UI
 
   
