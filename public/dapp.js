@@ -227,7 +227,6 @@ async function getVineCount(contract) {
   return vineCount;
 }
 
-
 async function displayAllVines(contract) {
   console.log("displayAllWines() called");
 
@@ -245,18 +244,15 @@ async function displayAllVines(contract) {
     // render in the UI
     var vineStruct = fetchVine(contract, vineIds[i]);
     vineStruct.then((v) => {
-
       buildCard(v)
-
     })
-    // console.log(vineStruct.then(console.log));
 
   })
 
 }
 
 async function fetchVine(contract, vineId) {
-  console.log("fetchVine() called. return a vine struct")
+  console.log("fetchVine() called")
   var vineStruct = await contract.methods.fetchVine(vineId).call();
   return vineStruct;
 }

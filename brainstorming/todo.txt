@@ -8,18 +8,20 @@ DONE: build 5 tests for existing mvp
 DONE: incorporate heroku express front to project
 DONE: test heroku deployment after incorporation
 
+DONE: read vineyard from deployed contract
+
 TODO: iterate front end:
-        allow user to submit a transaction to update smart contract
-        try to get feedback to front end after tx to the blockchain
-        updates the frontend if tx is successful or not
+        allow user to submit a transaction via de BUY button to update smart contract
+
+TODO: get feedback to front end after tx to the blockchain
+
+TODO: update the frontend if tx is successful or not
 
 TODO: add commented specs
 
 TODO: deploy final contract to rinkeby
 
 TODO: edit deployed_address.txt 
-
-
 
 TODO: create screencast with facetime on osx
 
@@ -31,4 +33,3 @@ TODO: edit README
         create instructions for running unit tests
 
 TODO: submit project
-
