@@ -1,4 +1,4 @@
-const contract_address = '0x6b4209B2b0E913E037d1C02C00E56e55235594B0';
+const contract_address = '0x9ecedbD4A6DbAba3F9664Fb888e46d8441CD421b';
 const contract_abi = [
   {
     "inputs": [],
@@ -203,7 +203,7 @@ async function buildCard (vineObj) {
   let cardBtn = document.createElement('button')
   cardBtn.className = "btn btn-outline-success buyBtn"
   cardBtn.innerHTML = "buy"
-  cardBtn.id = vineObj.vineId
+  cardBtn.id = "btnDetailsID_" + vineObj.vineId
 
   vineRow.appendChild(vineCol)
   vineCol.appendChild(vineCard)
@@ -257,6 +257,33 @@ async function fetchVine(contract, vineId) {
   return vineStruct;
 }
 
+async function buyVine(contract, vineId) {
+  console.log("buyVine() called for vineId: " + vineId)
+  // get vine
+  var v = await fetchVine(contract, vineId);
+  console.log(v.seller)
+  console.log(v.price)
+  // call buyVine with seller's address & price
+  await contract.methods.buyVine(vineId).send(
+    {
+      from: ethereum.selectedAddress, 
+      to: v.seller,
+      value: v.price
+    });
+  // await displayAllVines(contract); ???
+}
+
+function handleButtons(contract) {
+  console.log("handleButtons() called")
+  $("#vineRow").on("click", "button",  async function(event){
+
+    var vineId = event.target.id.split("_")[1];
+    await buyVine(contract, vineId);
+
+  });
+  console.log("here");
+}
+
 async function startApp() {
 
   const c1 = new web3.eth.Contract(contract_abi, contract_address);
@@ -265,11 +292,8 @@ async function startApp() {
   await ethereum.request({ method: 'eth_requestAccounts' });
   $("#mm-current-account").text("Connected to: " + ethereum.selectedAddress);
 
-
-  // iterate them and make cards in UI
-
-  
-  displayAllVines(c1);
+  await displayAllVines(c1);
+  handleButtons(c1);
   
 }
 

@@ -10,8 +10,12 @@ DONE: test heroku deployment after incorporation
 
 DONE: read vineyard from deployed contract
 
-TODO: iterate front end:
+DONE: iterate front end:
         allow user to submit a transaction via de BUY button to update smart contract
+
+TODO: update struct & UI to reflect change of state after purchase
+TODO: implement notifications
+TODO: implement require() methods
 
 TODO: get feedback to front end after tx to the blockchain
 
