@@ -19,11 +19,15 @@
 <body>
   <br />
   <div class="container">
+
+    <div id="mm-detected">Metamask is not here...</div>
+    <button id="mm-connect">Connect to MetaMask</button>
+    <div id="mm-current-account"></div>
+
+
     <div class="row">
 
       <h1 class="text">Welcome to TokenVines</h1>
-
-      <!-- TODO: Create table  -->
 
       <!-- Begin card group -->
       <div class="row row-cols-1 row-cols-md-6 g-4" id="vineRow"></div>
@@ -33,32 +37,6 @@
     </div>
   </div>
 
-  <div id="mm-detected">Metamask is not here...</div>
-
-  <button id="mm-connect">Connect to MetaMask</button>
-  <div id="mm-current-account"></div>
-
-  <button id="tv-get-vineCount">Get Current Vines</button>
-  <div id="tv-retrieve"></div>
-
-  <div id="tv-retrieve-2"></div>
-  <br />
-  <br />
-
-  <button id="ss-get-objects">Get Objects</button>
-  <div id="ss-retrieve-objects"></div>
-
-
-  <input id="ss-input-box" type="number" placeholder="Provide input">
-  <button id="ss-input-button">Submit Value</button>
-
-  <!-- 1. detect Metamask is/is not installed
-  2. allow the user to get access to Metamask
-  3. allow the user to send a transaction / update contract state (i.e. send tx to a contract)
-  4. allow user to read state from a contract -->
-
-  <br>
-  <br>
 
 
 

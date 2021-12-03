@@ -73,14 +73,15 @@ $ npm install @openzeppelin/contracts@3.2.0
 Ganache Cli testing environment
 #########################
 
-$ ganache-cli -p <4 digit port> --chainId <4 digit arbitrary chainId>
-[terminal listening on local blockchain]
-[add network on metamask to connect to ganache-cli network]
-[grab private keys on ganache-cli to add accounts on Metamask]
-[open another terminal]
-* setup truffle-config to connect truffle to this network
-$ truffle migrate --network <name of network that connects with ganache-cli>
+1. $ ganache-cli -p 7557 --chainId 1875
+2. $ truffle migrate --network ganacheCli
+3. [copy contract address to const in dapp.js]
+4. [add temporary ganache-cli account to metamask via private key]
+
 $ truffle console --network <name of ganache-cli network>
 $ truffle test --network <name of ganache-cli network>
 $ web3.eth.getChainId().then(console.log)
 returns chainId specified (sanity check)
+
+important! truffle migrate --reset 
+      each time a change in TokenVines.sol

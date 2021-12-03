@@ -6,8 +6,9 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 // Define a contract 'Lemonade Stand'
 contract TokenVines is Ownable {
-    // Variable: SKU count
-    uint256 public vineCount;
+    uint256 public vineCount; // total vines listed
+
+    uint256[] public vineIds;
 
     // Event: 'State' with value 'ForSale'
     enum Sale {
@@ -38,6 +39,10 @@ contract TokenVines is Ownable {
     // TODO: test all functionality in truffle develop
     // TODO: research how to handle events in front end
 
+    function getVineIds() public view returns (uint256[] memory) {
+        return vineIds;
+    }
+
     function putVineForSale(uint256 vineId) public {
         // TODO: require msg.sender == ownerofthevine
         // fetch vine
@@ -48,9 +53,12 @@ contract TokenVines is Ownable {
         v.seller = msg.sender;
     }
 
-    function createVineyard(uint256 _count, uint256 _price) public onlyOwner {
-        vineCount = _count;
-        for (uint256 i = 0; i < _count; i++) {
+    function createVineyard(uint256 _count, uint256 _price)
+        public
+        returns (uint256)
+    {
+        for (uint256 i = 1; i < _count + 1; i++) {
+            vineIds.push(i);
             vines[i] = Vine({
                 vineId: i,
                 price: _price,
@@ -59,23 +67,11 @@ contract TokenVines is Ownable {
                 seller: payable(owner()),
                 buyer: payable(address(0))
             });
-        }
-    }
 
-    function addVine(uint256 _price) public onlyOwner {
-        // Increment sku
-        vineCount = vineCount + 1;
-        // convert to address payable?
-        address payable seller = payable(msg.sender);
-        // Add the new item into inventory and mark it for sale
-        vines[vineCount] = Vine({
-            vineId: vineCount,
-            price: _price,
-            sale: Sale.ForSale,
-            state: State.Harvested,
-            seller: seller,
-            buyer: payable(address(0))
-        });
+            vineCount = vineCount + 1;
+        }
+
+        return vineCount;
     }
 
     function buyVine(uint256 _vineId) public payable {
