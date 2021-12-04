@@ -49,7 +49,7 @@ contract TokenVines is Ownable {
         v.sale = Sale.ForSale;
     }
 
-    function createVineyard() private {
+    function createVineyard() private onlyOwner {
         uint256 numOfVines = 10;
         uint256 pricePerVines = 100;
         for (uint256 i = 1; i < numOfVines + 1; i++) {

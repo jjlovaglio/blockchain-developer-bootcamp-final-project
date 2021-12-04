@@ -1,5 +1,5 @@
-const contract_address = '0x6854D8e2bfcc400Eb7327046Dcc0349624EdAB69';
-const contract_abi = [
+const contract_address = '0xB3588cb6c597C103D85EE449eD1ec277aBe2AAE8';
+const contract_abi =  [
   {
     "inputs": [],
     "stateMutability": "nonpayable",

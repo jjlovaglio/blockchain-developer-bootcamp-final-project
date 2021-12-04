@@ -73,7 +73,7 @@ $ npm install @openzeppelin/contracts@3.2.0
 Ganache Cli testing environment
 #########################
 
-1. $ ganache-cli -p 7557 --chainId 1875
+1. $ ganache-cli -p 7557 --chainId 1875 --mnemonic "cube ring panel future project later maximum couch slush leaf lift arrest"
 [switch terminal]
 2. $ truffle-console --network ganacheCli
 [switch terminal]
