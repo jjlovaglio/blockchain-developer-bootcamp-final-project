@@ -1,9 +1,28 @@
-const contract_address = '0x605Ae89Ff2b518CFD9344dD818108a543f7c8102';
+const contract_address = '0x266f47aa8D592289909296b4a5F31C240D0e5f2A';
 const contract_abi = [
   {
     "inputs": [],
     "stateMutability": "nonpayable",
     "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "message",
+        "type": "string"
+      }
+    ],
+    "name": "Log",
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -292,6 +311,17 @@ async function fetchVine(contract, vineId) {
   return vineStruct;
 }
 
+async function alertNewBuyer(buyerAddress) {
+  let myAlert = document.getElementById('myAlert')
+  let myAlertB = document.getElementById('myAlertB')
+  let myAlertP = document.getElementById('myAlertP')
+  myAlert.className = "alert alert-success alert-dismissible fade show"
+  myAlertP.innerHTML = "<strong>New Buyer!</strong> address: ..."+ buyerAddress.slice(-5,)
+  myAlert.appendChild(myAlertP)
+  myAlert.appendChild(myAlertB)
+
+}
+
 async function buyVine(contract, vineId) {
   console.log("buyVine() called for vineId: " + vineId)
   // get vine
@@ -305,7 +335,11 @@ async function buyVine(contract, vineId) {
       to: v.vineOwner,
       value: v.price
     })
-  // .then(console.log);
+    .then((x) => {
+      let buyerAddress = x.events.Log.returnValues[0];
+      alertNewBuyer(buyerAddress)
+    })
+
   await displayAllVines(contract);
 }
 
@@ -318,6 +352,7 @@ function handleButtons(contract) {
 
   });
 }
+
 
 async function startApp() {
 

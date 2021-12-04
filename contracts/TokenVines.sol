@@ -9,7 +9,8 @@ contract TokenVines is Ownable {
     // vineIds array for UI rendering
     uint256[] public vineIds;
 
-    // Event: 'State' with value 'ForSale'
+    event Log(address indexed sender, string message);
+
     enum Sale {
         NotForSale,
         ForSale
@@ -65,6 +66,7 @@ contract TokenVines is Ownable {
 
     function buyVine(uint256 _vineId) public payable {
         // TODO: paid enough modifier
+
         address buyer = msg.sender;
         uint256 price = vines[_vineId].price;
         // Update Owner
@@ -75,6 +77,7 @@ contract TokenVines is Ownable {
         // Transfer money to seller
         // this function doesn't work
         vines[_vineId].vineOwner.transfer(price);
+        emit Log(msg.sender, "New Buyer!");
     }
 
     function fetchVine(uint256 _vineId)
