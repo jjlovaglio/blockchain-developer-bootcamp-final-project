@@ -13,7 +13,7 @@ DONE: read vineyard from deployed contract
 DONE: iterate front end:
         allow user to submit a transaction via de BUY button to update smart contract
 
-TODO: update struct & UI to reflect change of state after purchase
+DONE: update struct & UI to reflect change of state after purchase
 TODO: implement notifications
 TODO: implement require() methods
 

@@ -1,4 +1,4 @@
-const contract_address = '0x9ecedbD4A6DbAba3F9664Fb888e46d8441CD421b';
+const contract_address = '0x605Ae89Ff2b518CFD9344dD818108a543f7c8102';
 const contract_abi = [
   {
     "inputs": [],
@@ -165,12 +165,7 @@ const contract_abi = [
       },
       {
         "internalType": "address",
-        "name": "seller",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "buyer",
+        "name": "vineOwner",
         "type": "address"
       }
     ],
@@ -179,6 +174,41 @@ const contract_abi = [
     "constant": true
   }
 ];
+
+async function soldBuildCard (vineObj) {
+
+  let  vineRow = document.getElementById('vineRow');
+  let vineCol = document.createElement('div')
+  vineCol.className = "col"
+  let vineCard = document.createElement('div')
+  vineCard.className = "card"
+  vineCard.style = ""
+  
+  let vineImg = document.createElement('img')
+  vineImg.src = "grapes.png"
+  let cardBody = document.createElement('div')
+  cardBody.className = "card-body"
+  let cardText = document.createElement('p')
+  cardText.style = "color: darkgreen;"
+  cardText.className = "card-text"
+  cardText.innerHTML = 
+      "Owner: ..." + vineObj.vineOwner.slice(-5,) + "<br>" + 
+      "Sale: " + "<strong>" + vineObj.saleIs + "</strong>" + "<br>" +
+      "Status: " + vineObj.stateIs + "<br>" +
+      "Price: $" + vineObj.price + "<br>" +
+      "VineId: " + vineObj.vineId
+  let cardBtn = document.createElement('button')
+  cardBtn.className = "btn btn-secondary disabled"
+  cardBtn.innerHTML = "sold"
+  cardBtn.id = "btnDetailsID_" + vineObj.vineId
+
+  vineRow.appendChild(vineCol)
+  vineCol.appendChild(vineCard)
+  vineCard.appendChild(vineImg)
+  vineCard.appendChild(cardBody)
+  cardBody.appendChild(cardText)
+  cardBody.appendChild(cardBtn)
+}
 
 async function buildCard (vineObj) {
 
@@ -196,7 +226,8 @@ async function buildCard (vineObj) {
   let cardText = document.createElement('p')
   cardText.className = "card-text"
   cardText.innerHTML = 
-      "Owner: ..." + vineObj.seller.slice(-5,) + "<br>" + 
+      "Owner: ..." + vineObj.vineOwner.slice(-5,) + "<br>" + 
+      "Sale: "    + vineObj.saleIs + "<br>" +
       "Status: " + vineObj.stateIs + "<br>" +
       "Price: $" + vineObj.price + "<br>" +
       "VineId: " + vineObj.vineId
@@ -244,7 +275,11 @@ async function displayAllVines(contract) {
     // render in the UI
     var vineStruct = fetchVine(contract, vineIds[i]);
     vineStruct.then((v) => {
-      buildCard(v)
+      if (v.saleIs === "NotForSale") {
+        soldBuildCard(v)
+      } else {
+        buildCard(v)
+      }
     })
 
   })
@@ -261,16 +296,17 @@ async function buyVine(contract, vineId) {
   console.log("buyVine() called for vineId: " + vineId)
   // get vine
   var v = await fetchVine(contract, vineId);
-  console.log(v.seller)
+  console.log(v.vineOwner)
   console.log(v.price)
   // call buyVine with seller's address & price
   await contract.methods.buyVine(vineId).send(
     {
       from: ethereum.selectedAddress, 
-      to: v.seller,
+      to: v.vineOwner,
       value: v.price
-    });
-  // await displayAllVines(contract); ???
+    })
+  // .then(console.log);
+  await displayAllVines(contract);
 }
 
 function handleButtons(contract) {
@@ -281,7 +317,6 @@ function handleButtons(contract) {
     await buyVine(contract, vineId);
 
   });
-  console.log("here");
 }
 
 async function startApp() {

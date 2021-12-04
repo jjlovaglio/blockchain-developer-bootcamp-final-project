@@ -25,8 +25,7 @@ contract TokenVines is Ownable {
         uint256 price;
         Sale sale;
         State state;
-        address payable seller;
-        address payable buyer;
+        address payable vineOwner;
     }
 
     // Define a public mapping 'items' that maps the SKU (a number) to an Item.
@@ -45,13 +44,8 @@ contract TokenVines is Ownable {
     }
 
     function putVineForSale(uint256 vineId) public {
-        // TODO: require msg.sender == ownerofthevine
-        // fetch vine
-        // change state
-
         Vine storage v = vines[vineId];
         v.sale = Sale.ForSale;
-        v.seller = msg.sender;
     }
 
     function createVineyard() private {
@@ -63,31 +57,24 @@ contract TokenVines is Ownable {
                 vineId: i,
                 price: pricePerVines,
                 sale: Sale.ForSale,
-                state: State.Harvested,
-                seller: payable(owner()),
-                buyer: payable(address(0))
+                state: State.Unharvested,
+                vineOwner: payable(owner())
             });
         }
     }
 
     function buyVine(uint256 _vineId) public payable {
+        // TODO: paid enough modifier
         address buyer = msg.sender;
         uint256 price = vines[_vineId].price;
-
-        // TODO: create forSale modifier
-
-        // Update Buyer
-        vines[_vineId].buyer = payable(buyer);
-
-        // Update State
-        vines[_vineId].state = State.Unharvested;
-
-        // Update Sale
+        // Update Owner
+        vines[_vineId].vineOwner = payable(buyer);
+        // Update forSale state
         vines[_vineId].sale = Sale.NotForSale;
 
         // Transfer money to seller
         // this function doesn't work
-        vines[_vineId].seller.transfer(price);
+        vines[_vineId].vineOwner.transfer(price);
     }
 
     function fetchVine(uint256 _vineId)
@@ -98,8 +85,7 @@ contract TokenVines is Ownable {
             uint256 price,
             string memory saleIs,
             string memory stateIs,
-            address seller,
-            address buyer
+            address vineOwner
         )
     {
         uint256 state;
@@ -126,7 +112,6 @@ contract TokenVines is Ownable {
             stateIs = "Harvested";
         }
 
-        seller = vines[_vineId].seller;
-        buyer = vines[_vineId].buyer;
+        vineOwner = vines[_vineId].vineOwner;
     }
 }
