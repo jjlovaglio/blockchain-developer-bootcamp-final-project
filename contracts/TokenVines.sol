@@ -32,6 +32,15 @@ contract TokenVines is Ownable {
     // Define a public mapping 'items' that maps the SKU (a number) to an Item.
     mapping(uint256 => Vine) vines;
 
+    // ensures sender has sent enough ether in the tx
+    modifier paidEnough(uint256 _vineId) {
+        require(
+            msg.value >= vines[_vineId].price,
+            "The amount of ether sent is lower than the price of the vine"
+        );
+        _;
+    }
+
     constructor() public {
         createVineyard();
     }
@@ -51,7 +60,7 @@ contract TokenVines is Ownable {
 
     function createVineyard() private onlyOwner {
         uint256 numOfVines = 10;
-        uint256 pricePerVines = 100;
+        uint256 pricePerVines = 10000000000000000000; // 10 ethers hardcoded
         for (uint256 i = 1; i < numOfVines + 1; i++) {
             vineIds.push(i);
             vines[i] = Vine({
@@ -64,9 +73,7 @@ contract TokenVines is Ownable {
         }
     }
 
-    function buyVine(uint256 _vineId) public payable {
-        // TODO: paid enough modifier
-
+    function buyVine(uint256 _vineId) public payable paidEnough(_vineId) {
         address buyer = msg.sender;
         uint256 price = vines[_vineId].price;
         // Update Owner

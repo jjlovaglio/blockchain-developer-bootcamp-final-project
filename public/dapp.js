@@ -1,4 +1,4 @@
-const contract_address = '0xB3588cb6c597C103D85EE449eD1ec277aBe2AAE8';
+const contract_address = '0xb1A8DB463BfB144c814B5d7726098fe57583d3f0';
 const contract_abi =  [
   {
     "inputs": [],
@@ -214,7 +214,7 @@ async function soldBuildCard (vineObj) {
       "Owner: ..." + vineObj.vineOwner.slice(-5,) + "<br>" + 
       "Sale: " + "<strong>" + vineObj.saleIs + "</strong>" + "<br>" +
       "Status: " + vineObj.stateIs + "<br>" +
-      "Price: $" + vineObj.price + "<br>" +
+      "Price: " + web3.utils.fromWei(vineObj.price, "ether" ) + " Ξ <br>" +
       "VineId: " + vineObj.vineId
   let cardBtn = document.createElement('button')
   cardBtn.className = "btn btn-secondary disabled"
@@ -248,7 +248,7 @@ async function buildCard (vineObj) {
       "Owner: ..." + vineObj.vineOwner.slice(-5,) + "<br>" + 
       "Sale: "    + vineObj.saleIs + "<br>" +
       "Status: " + vineObj.stateIs + "<br>" +
-      "Price: $" + vineObj.price + "<br>" +
+      "Price: " + web3.utils.fromWei(vineObj.price, "ether" ) + " Ξ <br>" +
       "VineId: " + vineObj.vineId
   let cardBtn = document.createElement('button')
   cardBtn.className = "btn btn-outline-success buyBtn"
@@ -324,7 +324,7 @@ async function alertNewBuyer(buyerAddress) {
 }
 async function deactivateSpinner() {
   let mySpin = document.getElementById('mySpin')
-  mySpin.className = "d-none text-center fade hide"
+  mySpin.className = "text-center fade hide"
 }
 
 async function activateSpinner() {
