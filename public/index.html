@@ -19,27 +19,32 @@
 <body>
   <br />
   <div class="container">
-
-    <div id="mm-detected">Metamask is not here...</div>
-    <button id="mm-connect">Connect to MetaMask</button>
-    <div id="mm-current-account"></div>
-
-
+    <div class="row">
+      <div id="mm-detected">Metamask is not here...</div>
+      <button class='btn text-start' id="mm-connect">Connect to MetaMask</button>
+      <div id="mm-current-account"></div>
+    </div>
+    <br><br>
     <div class="row">
 
-      <h1 class="text">Welcome to TokenVines</h1>
-      <div id="myAlert"></div>
-      <div class="alert alert-success alert-dismissible fade hide" role="alert" id="myAlert">
+      <h1 class="text-center">Welcome to TokenVines</h1>
+
+
+      <div class=" alert alert-success alert-dismissible fade hide" role="alert" id="myAlert">
         <p id='myAlertP'><strong>New buyer alert!</strong> You should check in on some of those fields below.</p>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" id="myAlertB"></button>
       </div>
 
-      <!-- Begin card group -->
-      <div class="row row-cols-1 row-cols-md-6 g-4" id="vineRow"></div>
-      <!-- End card group -->
-
-
+      <div class="d-none text-end fade hide" id="mySpin">
+        <strong class="text-success">Waiting for tx confirmations...</strong>
+        <br /><br />
+        <div class="spinner-border text-success ms-auto" role="status" aria-hidden="true"></div>
+      </div>
     </div>
+    <!-- Begin card group -->
+    <div class="row row-cols-1 row-cols-md-6 g-4" id="vineRow"></div>
+    <!-- End card group -->
+
   </div>
 
 

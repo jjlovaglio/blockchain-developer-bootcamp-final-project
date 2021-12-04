@@ -7617,11 +7617,30 @@
           ],
           "name": "OwnershipTransferred",
           "type": "event"
+        },
+        "0x0738f4da267a110d810e6e89fc59e46be6de0c37b1d5cd559b267dc3688e74e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "message",
+              "type": "string"
+            }
+          ],
+          "name": "Log",
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0x097EB1A680A18c0EEF4E5A25593589057f2Efa46",
-      "transactionHash": "0xab1a2102f41b393a573e6562693c32965927ae1c49a71c29a2eadc320da7b680"
+      "address": "0x6854D8e2bfcc400Eb7327046Dcc0349624EdAB69",
+      "transactionHash": "0x0699a4c5e81ae12b76bb8cdb488603b0a036a3ba7bac1d9e633afbef48ee1671"
     },
     "5777": {
       "events": {
@@ -7735,12 +7754,12 @@
         }
       },
       "links": {},
-      "address": "0x266f47aa8D592289909296b4a5F31C240D0e5f2A",
-      "transactionHash": "0x9aff0a589ea0a154b58687e097fabedd40b686c389ec0c19d992575e82bdc92a"
+      "address": "0x91A18c57b8d37B8615D8Ca4f9a9193267837C602",
+      "transactionHash": "0xecd1e1a4bb2a6f21604d7ea175c3648ef99a85ccb9fe6969973ae65a79b4c138"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-12-04T16:54:09.568Z",
+  "updatedAt": "2021-12-04T17:39:08.227Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {

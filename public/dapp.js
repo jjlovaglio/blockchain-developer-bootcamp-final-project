@@ -1,4 +1,4 @@
-const contract_address = '0x266f47aa8D592289909296b4a5F31C240D0e5f2A';
+const contract_address = '0x6854D8e2bfcc400Eb7327046Dcc0349624EdAB69';
 const contract_abi = [
   {
     "inputs": [],
@@ -316,10 +316,20 @@ async function alertNewBuyer(buyerAddress) {
   let myAlertB = document.getElementById('myAlertB')
   let myAlertP = document.getElementById('myAlertP')
   myAlert.className = "alert alert-success alert-dismissible fade show"
-  myAlertP.innerHTML = "<strong>New Buyer!</strong> address: ..."+ buyerAddress.slice(-5,)
+  myAlertP.innerHTML = "<strong>Transaction Successful!</strong> New buyer address: ..."+ buyerAddress.slice(-5,)
   myAlert.appendChild(myAlertP)
   myAlert.appendChild(myAlertB)
+  deactivateSpinner()
 
+}
+async function deactivateSpinner() {
+  let mySpin = document.getElementById('mySpin')
+  mySpin.className = "d-none text-center fade hide"
+}
+
+async function activateSpinner() {
+  let mySpin = document.getElementById('mySpin')
+  mySpin.className = "text-center fade show"
 }
 
 async function buyVine(contract, vineId) {
@@ -328,6 +338,9 @@ async function buyVine(contract, vineId) {
   var v = await fetchVine(contract, vineId);
   console.log(v.vineOwner)
   console.log(v.price)
+
+  await activateSpinner()
+
   // call buyVine with seller's address & price
   await contract.methods.buyVine(vineId).send(
     {

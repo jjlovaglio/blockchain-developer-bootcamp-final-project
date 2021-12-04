@@ -14,12 +14,13 @@ DONE: iterate front end:
         allow user to submit a transaction via de BUY button to update smart contract
 
 DONE: update struct & UI to reflect change of state after purchase
-TODO: implement notifications
+DONE: implement notifications
+
 TODO: implement require() methods
 
 TODO: get feedback to front end after tx to the blockchain
 
-TODO: update the frontend if tx is successful or not
+DONE: update the frontend if tx is successful or not
 
 TODO: add commented specs
 
