@@ -20,8 +20,8 @@ contract("TokenVines", function (accounts) {
      let c = await instance.getVineCount({from: farmerJane});
 
     assert.equal(r.vineId.toNumber(), 1, "vineId should be one");
-    assert.equal(r.price,web3.utils.toWei("10", "ether"), "price should be 10 ethers" );
-    assert.equal(c.toNumber(), 10, "vineCount should be 10");
+    assert.equal(r.price,web3.utils.toWei("0.1", "ether"), "price for a vine should be 0.1 eth" );
+    assert.equal(c.toNumber(), 20, "vineCount should be 20");
   });
 
     it("buyerJoe can buy a vine ", async () => {
@@ -41,23 +41,40 @@ contract("TokenVines", function (accounts) {
 
       const r = await instance.getVineCount.call();
 
-      assert.equal(r.toNumber(), 10, "vineCount shouldn't change!");
+      assert.equal(r.toNumber(), 20, "vineCount shouldn't change!");
 
     })
 
     it("buyerJoe cannot pay less than stipulated price for a vine", async () => {
     
+      try {
         await instance.buyVine(1,
           {
             from: buyerJoe,
             to: farmerJane,
-            value: web3.utils.toWei("9", "ether")
+            value: web3.utils.toWei("0.09", "ether")
           })
-          .then(console.log)
-          .catch((err) => {
-            assert.equal(err.reason, "The amount of ether sent is lower than the price of the vine", "The amount of ether sent cannot be lower than the price of the vine")
-            })
-
+      } catch (error) {
+        assert(error, "Expected an error, but did not get one");
+        assert.equal(error.reason, "The amount of ether sent is lower than the price of the vine", "The amount of ether sent cannot be lower than the price of the vine");
+      }
 
     })
+
+    it("buyerJoe cannot buy a vine with a vineId that does not exist", async () => {
+      try {
+        await instance.buyVine(333,
+          {
+            from: buyerJoe,
+            to: farmerJane,
+            value: web3.utils.toWei("0.1", "ether")
+        })
+        throw null;
+      } catch (error) {
+        assert(error, "Expected an error, but did not get one");
+        assert.equal(error.reason, "The vineId supplied does not exist.");
+      }
+
+    })
+
 })

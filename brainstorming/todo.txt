@@ -29,11 +29,17 @@ DONE: update the frontend if tx is successful or not
 
 DONE: convert wei to ether via web3.js
 
+DONE: redo tests
+
+DONE: add commented specs
+TODO: edit README
+        create instructions for installing dependencies
+        create instructions for accessing a server
+        create instructions for running unit tests
+TODO: review requirements
+
 TODO: add project introduction in html
 TODO: add vineyard photo
-
-TODO: redo tests
-TODO: add commented specs
 
 TODO: implement putVineForSale functionality
         add a vineOwner's list // tracks owners?
@@ -41,16 +47,12 @@ TODO: implement putVineForSale functionality
         fetch how many vines the connected owner has
         enable a button to put vine for sale for each owned vine
 
-TODO: review requirements
 
 TODO: deploy final contract to rinkeby
+TODO: send to discord latam for peer review
 TODO: edit deployed_address.txt 
 TODO: create screencast with facetime on osx
-
-TODO: edit README
-        create instructions for installing dependencies
-        create instructions for accessing a server
-        create instructions for running unit tests
+TODO: clean folder tree
 
 TODO: submit project
 
