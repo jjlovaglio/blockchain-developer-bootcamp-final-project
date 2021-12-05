@@ -1,4 +1,4 @@
-const contract_address = '0xb1A8DB463BfB144c814B5d7726098fe57583d3f0';
+const contract_address = '0x471b54DD8CfF436Cda23BeC32579f6A59f0034f5';
 const contract_abi =  [
   {
     "inputs": [],
@@ -293,13 +293,14 @@ async function displayAllVines(contract) {
     // use the buildCard function to create a vineCard object
     // render in the UI
     var vineStruct = fetchVine(contract, vineIds[i]);
-    vineStruct.then((v) => {
-      if (v.saleIs === "NotForSale") {
-        soldBuildCard(v)
-      } else {
-        buildCard(v)
-      }
-    })
+    vineStruct
+      .then((v) => {
+        if (v.saleIs === "NotForSale") {
+          soldBuildCard(v)
+        } else {
+          buildCard(v)
+        }
+      })
 
   })
 

@@ -29,6 +29,9 @@ DONE: update the frontend if tx is successful or not
 
 DONE: convert wei to ether via web3.js
 
+TODO: add project introduction in html
+TODO: add vineyard photo
+
 TODO: redo tests
 TODO: add commented specs
 
