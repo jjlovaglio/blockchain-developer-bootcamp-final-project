@@ -67,3 +67,5 @@ address: `0x16A10a43B3f98CACD7Be6A72aa830561155385B0`
     - show the user their owned vines and their status
 
 ## Screencast
+
+https://www.loom.com/share/fbd47d3691fb4b02bd4b644a9659ca9b
