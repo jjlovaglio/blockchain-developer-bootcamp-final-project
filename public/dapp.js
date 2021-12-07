@@ -1,4 +1,4 @@
-const contract_address = '0xdefa105ed07ef6c3a0a57e3da7ec24bf6babdb55';
+const contract_address = '0x3d71D63e9317E482c09a2f27452a27825E635B8f';
 const contract_abi =  [
   {
     "inputs": [],
@@ -129,7 +129,7 @@ const contract_abi =  [
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "vineId",
+        "name": "_vineId",
         "type": "uint256"
       }
     ],

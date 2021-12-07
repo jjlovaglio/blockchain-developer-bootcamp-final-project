@@ -19,16 +19,26 @@
 <body>
   <br />
   <div class="container">
-    <div class="row">
-      <div id="mm-detected">Metamask is not here...</div>
-      <button class='btn text-start' id="mm-connect">Connect to MetaMask</button>
-      <div id="mm-current-account"></div>
-    </div>
+
+    <div id="mm-detected">Metamask is not here...</div>
+    <button type="button" class='btn btn-success btn-sm' id="mm-connect">Connect to MetaMask</button>
+    <div id="mm-current-account"></div>
+
     <br><br>
     <div class="row">
 
       <h1 class="text-center">Welcome to TokenVines</h1>
 
+      <img src="./vineyard.jpeg" class="img-fluid" style="height: 10" alt="...">
+    </div>
+    <div class="row p-3">
+
+      <p>This dapp is a proof of concept of a virtual representation of a real world vineyard asset. The property is
+        valued at <strong>2.4
+          eth</strong>. The property is fractioned by the number of existing vines growing on it. On this example
+        <strong>24 vines</strong>. Anybody with an
+        ethereum wallet can purchase a vine. Owners of a vine have can harvest the production <strong> each year in the
+          form of one bottle of wine</strong> per year, to be redeemed at the site after august 31st each year.
 
       <div class=" alert alert-success alert-dismissible fade hide" role="alert" id="myAlert">
         <p id='myAlertP'><strong>New buyer alert!</strong> You should check in on some of those fields below.</p>
@@ -41,6 +51,7 @@
         <div class="spinner-border text-success ms-auto" role="status" aria-hidden="true"></div>
       </div>
     </div>
+    <h1 class="text-center">Available Vines</h1>
     <!-- Begin card group -->
     <div class="row row-cols-1 row-cols-md-6 g-4" id="vineRow"></div>
     <!-- End card group -->

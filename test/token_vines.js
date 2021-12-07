@@ -21,7 +21,7 @@ contract("TokenVines", function (accounts) {
 
     assert.equal(r.vineId.toNumber(), 1, "vineId should be one");
     assert.equal(r.price,web3.utils.toWei("0.1", "ether"), "price for a vine should be 0.1 eth" );
-    assert.equal(c.toNumber(), 20, "vineCount should be 20");
+    assert.equal(c.toNumber(), 24, "vineCount should be 24");
   });
 
     it("buyerJoe can buy a vine ", async () => {
@@ -41,7 +41,7 @@ contract("TokenVines", function (accounts) {
 
       const r = await instance.getVineCount.call();
 
-      assert.equal(r.toNumber(), 20, "vineCount shouldn't change!");
+      assert.equal(r.toNumber(), 24, "vineCount shouldn't change!");
 
     })
 

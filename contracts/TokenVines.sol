@@ -74,7 +74,7 @@ contract TokenVines is Ownable {
     /// @notice Creates a Prototype vineyard
     /// @dev All vines created are assigned to the deployer of the contract
     function createVineyard() private onlyOwner {
-        uint256 numOfVines = 20;
+        uint256 numOfVines = 24;
         uint256 pricePerVines = 100000000000000000; // in wei (0.1 eth)
         for (uint256 i = 1; i < numOfVines + 1; i++) {
             vineIds.push(i);
