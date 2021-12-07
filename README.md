@@ -48,7 +48,7 @@ https://cfp-token-vines-jjl.herokuapp.com/
 ### Testing the project locally
 
 - [switch to truffle-console terminal] 
-- $ test --network ganacheCli
+- truffle(ganacheCli) test --network ganacheCli
 
 ## Public Ethereum wallet for certification
 
