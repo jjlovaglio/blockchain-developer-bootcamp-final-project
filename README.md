@@ -4,7 +4,7 @@
 ## Project Description
 This dapp is a proof of concept of a virtual representation of a real world vineyard asset. The property is valued at 2.4 eth. The property is fractioned by the number of existing vines growing on it. On this example 24 vines. Anybody with an ethereum wallet can purchase a vine. Owners of a vine have can harvest the production each year in the form of one bottle of wine per year, to be redeemed at the site after august 31st each year.
 
-#### Project Structure
+## Project Structure
 ```
 .
 ├── build/                   # Truffle build 
@@ -21,7 +21,7 @@ This dapp is a proof of concept of a virtual representation of a real world vine
 
 ## Deployed frontend url
 
-https://springboot-heku-demo.herokuapp.com/
+https://cfp-token-vines-jjl.herokuapp.com/
 
 
 ## Prerequisites
